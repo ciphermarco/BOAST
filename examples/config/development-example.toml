@@ -1,0 +1,41 @@
+# BOAST's development configuration EXAMPLE.
+# These values are usually good enough for local development and testing,
+# but make sure the configured ports are available and the paths to TLS files
+# are right.
+#
+[storage]
+  max_events = 1_000_000
+  max_events_by_test = 100
+  max_dump_size = "80KB"
+  hmac_key = "testing"
+
+  [storage.expire]
+    ttl = "24h"
+    check_interval = "1h"
+    max_restarts = 100
+
+[api]
+  host = "127.0.0.1"
+  # domain = "localhost"
+  tls_port = 2096
+  tls_cert = "./.tlstest/fullchain.pem"
+  tls_key = "./.tlstest/privkey.pem"
+
+  [api.status]
+    url_path = "mvqdz5spzlrfrjhafyxsfwx66u"
+
+[http_receiver]
+  host = "127.0.0.1"
+  ports = [8080]
+  # real_ip_header = "X-Real-IP"
+
+  [http_receiver.tls]
+    ports = [8443]
+    cert = "./.tlstest/testserver.crt"
+    key = "./.tlstest/testserver.key"
+
+[dns_receiver]
+  host = "127.0.0.1"
+  ports = [8053]
+  domain = "localhost"
+  public_ip = "127.0.0.1"

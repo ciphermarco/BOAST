@@ -1,0 +1,42 @@
+# BOAST's production configuration to be used with the provided Dockerfile.
+# You want to give special attention to the commented parameters.
+#
+# Doc on how to use this with the provided Dockerfile (and more):
+# https://github.com/ciphermarco/boast/blob/master/docs/deploying.md#deploying-with-docker
+#
+[storage]
+  # max_events = 1_000_000
+  # max_events_by_test = 100
+  # max_dump_size = "80KB"
+  # hmac_key = ""
+
+  [storage.expire]
+    #   ttl = "12h"
+    #   check_interval = "1h"
+    #   max_restarts = 100
+
+[api]
+  host = "0.0.0.0"
+  # domain = "example.com"
+  tls_port = 2096
+  tls_cert = "./tls/fullchain.pem"
+  tls_key = "./tls/privkey.pem"
+
+  [api.status]
+  #   url_path = ""
+
+[http_receiver]
+  host = "0.0.0.0"
+  ports = [80, 8080]
+  #   real_ip_header = "X-Real-IP"
+
+  [http_receiver.tls]
+    ports = [443, 8443]
+    cert = "./tls/fullchain.pem"
+    key = "./tls/privkey.pem"
+
+[dns_receiver]
+  host = "0.0.0.0"
+  ports = [53]
+  #   domain = "example.com"
+  #   public_ip = "203.0.113.77"

@@ -1,0 +1,5 @@
+BOAST
+Copyright 2020-present Marco Pereira (@ciphermarco)
+
+This project includes a component (httplogger) derived from work licensed under
+the MIT License which can be found on {project_root}/api/httplogger/LICENSE.

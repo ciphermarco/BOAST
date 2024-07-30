@@ -1,0 +1,44 @@
+# BOAST's production configuration EXAMPLE.
+# DO NOT USE AS IT IS. Verify each value carefully and change them accordingly.
+#
+[storage]
+  max_events = 1_000_000
+  max_events_by_test = 100
+  max_dump_size = "80KB"
+  # DO NOT USE THIS hmac_key. Generate your own.
+  hmac_key = "TJkhXnMqSqOaYDiTw7HsfQ=="
+
+  [storage.expire]
+    ttl = "24h"
+    check_interval = "1h"
+    max_restarts = 100
+
+[api]
+  domain = "example.com"
+  host = "0.0.0.0"
+  tls_port = 2096
+  tls_cert = "/path/to/tls/fullchain.pem"
+  tls_key = "/path/to/tls/privkey.pem"
+
+  [api.status]
+    # DO NOT USE THIS url_path. Generate your own.
+    url_path = "rzaedgmqloivvw7v3lamu3tzvi"
+
+[http_receiver]
+  host = "0.0.0.0"
+  ports = [80, 8080]
+  # Fill real_ip_header in with the correct field name if proxied. This way,
+  # receivers can record the right client's address. Otherwise, the last node's
+  # address will be recorded. This value is case-insensitive as expected.
+  # real_ip_header = "X-Real-IP"
+
+  [http_receiver.tls]
+    ports = [443, 8443]
+    cert = "/path/to/tls/server.crt"
+    key = "/path/to/tls/server.key"
+
+[dns_receiver]
+  host = "0.0.0.0"
+  ports = [53]
+  domain = "example.com"
+  public_ip = "203.0.113.77"
